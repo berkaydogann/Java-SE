@@ -1,0 +1,8 @@
+[Ljava.lang.String;@eed1f14 -> Bellek adres yoludur. Sistem ayaga kalkarken cities'in
+tuttuğu yoldur.(Pointer gibi düşünebilirsin)
+
+Diziler oluştuktan sonra silme veya ekleme yapılamaz. Sadece değiştirme yapılabilir.
+
+x++ ve ++x -> Sadece yazdırırken önemlidir başka birşeyi yoktur
+sout(x++) -> x'i yazdır sonra arttır -> ekrana 0 yazar
+sout(++x) -> önce arttır sonra x'i yazdır -> ekrana 1 yazar
