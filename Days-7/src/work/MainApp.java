@@ -10,14 +10,9 @@ public class MainApp {
 
         //a.read() -> //Diyemeyiz. Sebebi Base classında tanımlı değil.
         a.action(4, 6);
-        b.action(1, 3, 9);
+        b.action(1, 3,9);
         c.action(4, 2);
-        System.out.println("Call A: ");
-        call(a);
-        System.out.println("Call B: ");
-        call(b);
-        System.out.println("Call C: ");
-        call(c);
+
     }
 
     public static void call(Base base) {
