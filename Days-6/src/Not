@@ -1,0 +1,35 @@
+Static ne zaman zorunludur?
+    Örneğin ilk girişi static'te tuttuk bu sayede her seferinde db'ye gidip bu kullanıcı bilgilerini
+    çekmeye gerek olmaz.
+
+Static
+    **-Kullanılması için nesne üretimine ihtiyaç duymazlar. **
+    -Sınıfa ait olmak zorundadırlar.(Sınıfın gövdesi{} içinde olmalı)
+    -Değişkenler, Fonksiyonlar ve Nesnelerde de kullanılabilir.
+    -Tetiklenmesi direk sınıfAdı.staticAdı ile olur.
+    -Erişim belirteci alırlar(Public,private,protected)
+    -Uygulama içinde her yerden erişime açıktırlar.
+    -Uygulama açık olduğu sürece ölmezler(yok olmazlar)
+    -İçindeki değerler istenilen her yerde değiştirilebilir.
+
+Final
+    -Değişken yada nesnelerin değerlerini sabit tutmak için kullanılır.
+    -final static Test test = new Test() -> bunu yaptıgımızda Test class'I final olmaz
+        -Sadece o methodun başka yerde nesnesini oluşturmasınız engelleriz.
+
+
+**Static olmayan bir method ile static olan bir method birbiri ile haberleşemez!! Static olmayan
+method için nesne oluşturmalısın.
+
+
+InnerClass-Dahili sınıflar
+    -CLass içerisinde class oluşturmak için kullanılır.
+    -Kullanma! Burada her class'I olusturmayı tercih et.
+
+Interface
+    -İçerisinde gövdesiz methodlar kurgulanır.
+    -Implements anahtar kelime ile normal sınıfa özellikerlni aktarılmış olurlar.
+    -Dokümantasyonu kolaylaştırırlar.
+    -Interfaceler içindeki methodlara erişim belirteci vermeye gerek yoktur, defaultta
+    publictir.
+
