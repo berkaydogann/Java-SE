@@ -9,7 +9,11 @@ public class Settings {
         return a + b;
     }
 
-    public static int minus(int a,int b){
+    public static int minus(int a, int b) {
         return a - b;
     }
+    class Profile {
+        int age = 30;
+    }
 }
+

@@ -22,5 +22,8 @@ public class MainApp {
         System.out.println(action.call()); // ilk calıstıgında 0, action1.call() -> 400, action2.call() -> 900 gelir.
 
         System.out.println(Settings.minus(1, 5));
+
+        Settings.Profile profile = new Settings().new Profile();
+        System.out.println( profile.age );
     }
 }
