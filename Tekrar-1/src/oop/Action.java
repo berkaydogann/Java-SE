@@ -1,4 +1,4 @@
-package com.work;
+package oop;
 
 public class Action {
     int a = 10;
