@@ -9,7 +9,7 @@ public class Draw {
     public void ciz() {
     }
 
-    public void pixel(String name, int x, int y) {
+    public final void pixel(String name, int x, int y) {
         System.out.println(name + " : " + "x: " + x + " y: " + y);
     }
 
