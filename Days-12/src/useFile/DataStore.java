@@ -2,12 +2,40 @@ package useFile;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class DataStore {
-    File file = new File("note.txt");
+    private final String fileName;
+    private final File file;
+    private final String folderName = fncDate();
+
+    public DataStore(String fileName) {
+        folderControl(folderName);
+        this.fileName = folderName + "/" + fileName + ".txt ";
+        file = new File(this.fileName);
+    }
+
+    public String fncDate() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        int year = localDateTime.getYear();
+        String month = localDateTime.getMonthValue() > 9 ? "" + localDateTime.getMonthValue() : "0" + localDateTime.getMonthValue();
+        int day = localDateTime.getDayOfMonth();
+        String nowDate = day + "_" + month + "_" + year;
+        return nowDate;
+    }
+
+    public void folderControl(String folderName) {
+        File file = new File(folderName);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
+    }
 
     public boolean createFile() {
 
@@ -56,6 +84,29 @@ public class DataStore {
             }
         } catch (Exception ex) {
             System.err.println("readData: " + ex);
+        }
+        return ls;
+    }
+
+    public List<String> allReadData() {
+        List<String> ls = new ArrayList<>();
+        try {
+            File file = new File(folderName);
+            File[] files = file.listFiles();
+            for (File item : files) {
+                String type = item.getName().substring(item.getName().length() - 4);
+                if (type.equals(".txt")) {
+                    Scanner scanner = new Scanner(item);
+
+                    while (scanner.hasNextLine()) {
+                        String line = scanner.nextLine();
+                        ls.add(line);
+                    }
+                }
+
+            }
+        } catch (Exception ex) {
+            System.err.println("allReadData err: " + ex);
         }
         return ls;
     }
