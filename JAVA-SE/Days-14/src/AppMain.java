@@ -34,11 +34,15 @@ public class AppMain {
         for (User item : ls) {
             System.out.println("uid: " + item.getUid() + " Name: " + item.getName() + " surname: " + item.getSurname() + " password: " + item.getPassword());
         }
-        */
+
         UserService userService = new UserService();
         List<User> ls = userService.userSearch("ali");
         for (User item : ls) {
-            System.out.println("uid: " + item.getUid() + " Name: " + item.getName() + " surname: " + item.getSurname() + " email: " + item.getEmail());
+            System.out.println(item);
+            //System.out.println("uid: " + item.getUid() + " Name: " + item.getName() + " surname: " + item.getSurname() + " email: " + item.getEmail());
         }
+         */
+        UserService userService = new UserService();
+        System.out.println(userService.userLogin("aahrendsen3v@studiopress.com","qIJ6oCSt"));
     }
 }

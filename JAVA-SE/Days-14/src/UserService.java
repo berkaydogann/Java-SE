@@ -81,6 +81,24 @@ public class UserService {
 
     }
 
+    public boolean userLogin(String email, String password) {
+        boolean status = false;
+        Connection con = db.connect();
+        try {
+            String sql = "Select uid from users where email = ? and password = ?";
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setString(1, email);
+            pre.setString(2, password);
+            ResultSet rs = pre.executeQuery();
+            status = rs.next();
+        } catch (Exception ex) {
+            System.err.println("UserLogin Error: " + ex);
+        } finally {
+            db.close();
+        }
+        return status;
+    }
+
     public void parseTable(List<User> ls, ResultSet rs) throws SQLException {
         while (rs.next()) {
             int uid = rs.getInt("uid");

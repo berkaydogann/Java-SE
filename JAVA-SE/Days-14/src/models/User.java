@@ -88,4 +88,18 @@ public class User {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", status=" + status +
+                ", age=" + age +
+                ", date=" + date +
+                '}';
+    }
 }
