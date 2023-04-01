@@ -1,7 +1,8 @@
 import models.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
     DB db = new DB();
@@ -62,4 +63,60 @@ public class UserService {
         }
         return status;
     }
+
+    public List<User> allList() {
+        List<User> ls = new ArrayList<>();
+        Connection con = db.connect();
+        try {
+            String sql = "select * from users";
+            PreparedStatement pre = con.prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            parseTable(ls, rs);
+        } catch (Exception ex) {
+            System.err.println("All list Error: " + ex);
+        } finally {
+            db.close();
+        }
+        return ls;
+
+    }
+
+    public void parseTable(List<User> ls, ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            int uid = rs.getInt("uid");
+            String name = rs.getString("name");
+            String surname = rs.getString("surname");
+            String email = rs.getString("email");
+            String password = rs.getString("password");
+            Boolean status = rs.getBoolean("status");
+            Integer age = rs.getInt("age");
+            Date date = rs.getDate("date");
+
+            User u = new User(name, surname, email, password, status, age);
+            u.setUid(uid);
+            u.setDate(date);
+            ls.add(u);
+        }
+    }
+
+    public List<User> userSearch(String value) {
+        List<User> ls = new ArrayList<>();
+        Connection con = db.connect();
+        try {
+            value = "%" + value + "%";
+            String sql = "Select * from users where name  LIKE ? or surname LIKE ? or email LIKE ?";
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setString(1, value);
+            pre.setString(2, value);
+            pre.setString(3, value);
+            ResultSet rs = pre.executeQuery();
+            parseTable(ls, rs);
+        } catch (Exception ex) {
+            System.err.println("Search user Error: " + ex);
+        } finally {
+            db.close();
+        }
+        return ls;
+    }
+
 }

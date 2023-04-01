@@ -1,6 +1,8 @@
 import models.Product;
 import models.User;
 
+import java.util.List;
+
 public class AppMain {
     public static void main(String[] args) {
         /*DB db = new DB();
@@ -21,10 +23,22 @@ public class AppMain {
             System.out.println("Duplicate Email entry Problem");
         }
         System.out.println("statusDelete: " + statusDelete);
-        */
+
         User u = new User("Sultan", "Bilirim", "sultan@mail.com", "newAswv", true, 56);
         u.setUid(1101);
         UserService userService = new UserService();
         userService.update(u);
+
+        UserService userService = new UserService();
+        List<User> ls = userService.allList();
+        for (User item : ls) {
+            System.out.println("uid: " + item.getUid() + " Name: " + item.getName() + " surname: " + item.getSurname() + " password: " + item.getPassword());
+        }
+        */
+        UserService userService = new UserService();
+        List<User> ls = userService.userSearch("ali");
+        for (User item : ls) {
+            System.out.println("uid: " + item.getUid() + " Name: " + item.getName() + " surname: " + item.getSurname() + " email: " + item.getEmail());
+        }
     }
 }
