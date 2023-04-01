@@ -15,13 +15,13 @@ public class User {
     public User() {
     }
 
-    public User(Integer uid, String name, String surname, String email, String password, Boolean status) {
-        this.uid = uid;
+    public User(String name, String surname, String email, String password, Boolean status, Integer age) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.status = status;
+        this.age = age;
 
     }
 
