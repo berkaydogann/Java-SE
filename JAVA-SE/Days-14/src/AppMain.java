@@ -9,17 +9,22 @@ public class AppMain {
         System.out.println( con1.hashCode() );
         */
 
-        User u = new User("Sultan", "Bilirim", "sultan@mail.com", "sulto", true, 56);
+        /*User u = new User("Sultan", "Bilirim", "sultan@mail.com", "sulto", true, 56);
         Product p = new Product("Kalem", 123);
         UserService userService = new UserService();
         ProductService productService = new ProductService();
-        int status = userService.save(u);
-
-        if (status > 0) {
-            System.out.println(status);
+        int statusInsert = userService.save(u);
+        int statusDelete = userService.delete(101);
+        if (statusInsert > 0) {
+            System.out.println(statusInsert);
         } else {
             System.out.println("Duplicate Email entry Problem");
         }
-
+        System.out.println("statusDelete: " + statusDelete);
+        */
+        User u = new User("Sultan", "Bilirim", "sultan@mail.com", "newAswv", true, 56);
+        u.setUid(1101);
+        UserService userService = new UserService();
+        userService.update(u);
     }
 }
