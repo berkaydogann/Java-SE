@@ -41,8 +41,12 @@ public class AppMain {
             System.out.println(item);
             //System.out.println("uid: " + item.getUid() + " Name: " + item.getName() + " surname: " + item.getSurname() + " email: " + item.getEmail());
         }
-         */
+
         UserService userService = new UserService();
         System.out.println(userService.userLogin("aahrendsen3v@studiopress.com","qIJ6oCSt"));
+
+         */
+        ProductService service = new ProductService();
+        service.list();
     }
 }
