@@ -27,5 +27,22 @@
     <a class="btnClass" href="about.html">About Us</a>
     <a class="btnClass" href="https://docs.spring.io/spring-framework/docs/2.5.x/spring-reference.pdf">PDF</a>
     <a class="btnClass" href="site.zip">Zip</a>
+
+    <div style="clear: both">
+        <a href="mailto:berkaydogann98@gmail.com">
+            <img src="img/email.png" width="50"/>
+        </a>
+        <a href="tel:01241512">
+            <img src="img/phone.png" width="50" />
+        </a>
+    </div>
+
+    <form action="/register" method="post" autocomplete="off">
+        <input required name="email" type="email" placeholder="E-mail"><br/><br/>
+        <input required name="password" type="password" placeholder="Password"><br/><br/>
+        <input readonly readonly name="name" type="text" value="Ali bilmem"><br/><br/>
+        <input required name="code" minlength="3" maxlength="25" placeholder="Code...(3 Char)">
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
