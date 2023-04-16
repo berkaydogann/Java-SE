@@ -33,4 +33,21 @@ public class UserService {
         }
         return ls;
     }
+
+    public int deleteUserById(int uid) {
+        int status = 0;
+        DB db = new DB();
+        try {
+            String sql = "delete from users where uid = ?";
+            PreparedStatement pre = db.connect().prepareStatement(sql);
+            pre.setInt(1, uid);
+            status = pre.executeUpdate();
+        } catch (Exception ex) {
+            System.err.println("Users Delete Error : " + ex);
+        } finally {
+            db.close();
+        }
+        return status;
+    }
+
 }

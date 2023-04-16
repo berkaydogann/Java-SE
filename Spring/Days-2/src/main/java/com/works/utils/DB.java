@@ -17,7 +17,7 @@ public class DB {
             if (connection == null || connection.isClosed()) {
                 Class.forName(driver);
                 connection = DriverManager.getConnection(url, username, password);
-                System.out.println("Connection Success");
+                System.out.println("Connection Success " + connection.hashCode());
             }
         } catch (Exception ex) {
             System.err.println("Connection Error!:" + ex);
@@ -29,7 +29,7 @@ public class DB {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("Connection Close");
+                System.out.println("Connection Close " + connection.hashCode());
             }
         } catch (Exception e) {
             System.err.println("Close Error:" + e);
