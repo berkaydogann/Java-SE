@@ -17,6 +17,8 @@ public class HomeController {
         model.addAttribute("users", service.users());
         model.addAttribute("status", status);
         model.addAttribute("message", message);
+        status = -1;
+        message = "";
         return "home";
     }
 
