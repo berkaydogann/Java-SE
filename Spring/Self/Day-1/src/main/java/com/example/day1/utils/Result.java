@@ -17,10 +17,10 @@ public class Result {
         return ls;
     }
 
-    public List userSearch(String q) {
-        return users()
+    public List userSearch(String q, List<User> ls) {
+        return ls
                 .stream()
-                .filter(item -> item.getName().contains(q))
+                .filter(item -> item.getName().toLowerCase().contains(q.toLowerCase()))
                 .collect(Collectors.toList());
     }
 }
