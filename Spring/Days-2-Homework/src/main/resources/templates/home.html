@@ -25,12 +25,12 @@
         <th:block th:if="${status > 0}">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success!</strong> <span th:text="${message}"></span>
-                <th:block th:each="item : ${users}">
-                <th:block th:if="${item.deleteStatus == 1}">
-                    <a th:href="${'/undolast/'+item.uid}" type="button" class="btn btn-outline-primary" style="margin-left: 20px; color: black">Geri Al</a>
-                </th:block></th:block>
+                <a th:href="${'/undolast/'+ duid}" type="button" class="btn btn-outline-primary"
+                   style="margin-left: 20px; color: black">Geri Al</a>
+
 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
             </div>
         </th:block>
     </th:block>
@@ -57,7 +57,7 @@
             <td th:text="${item.date}"></td>
             <td th:text="${item.deleteStatus}"></td>
             <td>
-                <a th:href="${'/userDelete/'+item.uid}" role="button" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="${'/userUndoDelete/'+item.uid}" role="button" class="btn btn-danger btn-sm">Delete</a>
             </td>
 
         </tr>
