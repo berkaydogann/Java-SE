@@ -27,10 +27,32 @@
                 <strong>Success!</strong> <span th:text="${message}"></span>
                 <a th:href="${'/undolast/'+ duid}" type="button" class="btn btn-outline-primary"
                    style="margin-left: 20px; color: black">Geri Al</a>
-
-
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Sil
+                </button>
 
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Uyarı</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Seçili olan kullanıcı kalıcı olarak silinecektir. Onaylıyor musunuz?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a th:href="${'/userDelete/'+duid}" type="button" class="btn btn-primary">Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </th:block>
     </th:block>
@@ -49,17 +71,19 @@
         <tbody th:if="${users != null}">
 
         <tr th:each="item, iter: ${users}">
-            <th scope="row" th:text="${iter.index}"></th>
-            <th scope="row" th:text="${item.uid}"></th>
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.surname}"></td>
-            <td th:text="${item.email}"></td>
-            <td th:text="${item.date}"></td>
-            <td th:text="${item.deleteStatus}"></td>
-            <td>
-                <a th:href="${'/userUndoDelete/'+item.uid}" role="button" class="btn btn-danger btn-sm">Delete</a>
-            </td>
-
+            <th:block th:if="${item.deleteStatus == 0}">
+                <th scope="row" th:text="${iter.index}"></th>
+                <th scope="row" th:text="${item.uid}"></th>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.surname}"></td>
+                <td th:text="${item.email}"></td>
+                <td th:text="${item.date}"></td>
+                <td th:text="${item.deleteStatus}"></td>
+                <td>
+                    <a th:href="${'/userUndoDelete/'+item.uid}" role="button"
+                       class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </th:block>
         </tr>
 
         </tbody>

@@ -13,7 +13,7 @@ public class HomeController {
     int duid = 0;
     String message = "";
     int deleteStatus = 0;
-
+    int timeStatu = 0;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -27,7 +27,7 @@ public class HomeController {
     }
 
     @GetMapping("/userUndoDelete/{uid}")
-    public String deleteUndoUserById(@PathVariable int uid, Model model) throws InterruptedException {
+    public String deleteUndoUserById(@PathVariable int uid, Model model) {
         status = service.deleteUndoUserById(uid);
         if (status > 0) {
             message = "Delete Success - " + uid;
@@ -36,6 +36,12 @@ public class HomeController {
         } else {
             message = "Delete Error - " + uid;
         }
+        return "redirect:/";
+    }
+
+    @GetMapping("timer")
+    public String timer() throws InterruptedException {
+        timeStatu = service.timeStatu();
         return "redirect:/";
     }
 

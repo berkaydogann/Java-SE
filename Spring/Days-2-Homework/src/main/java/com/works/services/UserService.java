@@ -50,6 +50,12 @@ public class UserService {
         }
         return status;
     }
+
+    public int timeStatu() throws InterruptedException {
+        Thread.sleep(5000);
+        return 1;
+    }
+
     public int deleteUserById(int uid) {
         int status = 0;
         DB db = new DB();
@@ -65,6 +71,7 @@ public class UserService {
         }
         return status;
     }
+
     public int undoLastById(int uid) {
         int deleteStatus = 0;
         DB db = new DB();
