@@ -23,6 +23,7 @@ public class HomeController {
         model.addAttribute("duid", duid);
         status = -1;
         message = "";
+        duid = 0;
         return "home";
     }
 

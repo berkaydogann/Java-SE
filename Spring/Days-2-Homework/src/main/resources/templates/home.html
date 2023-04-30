@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="container">
+    <div th:replace="inc/navbar"></div>
     <th:block th:if="${status != null}">
         <th:block th:if="${status == 0}">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -71,19 +72,17 @@
         <tbody th:if="${users != null}">
 
         <tr th:each="item, iter: ${users}">
-            <th:block th:if="${item.deleteStatus == 0}">
-                <th scope="row" th:text="${iter.index}"></th>
-                <th scope="row" th:text="${item.uid}"></th>
-                <td th:text="${item.name}"></td>
-                <td th:text="${item.surname}"></td>
-                <td th:text="${item.email}"></td>
-                <td th:text="${item.date}"></td>
-                <td th:text="${item.deleteStatus}"></td>
-                <td>
-                    <a th:href="${'/userUndoDelete/'+item.uid}" role="button"
-                       class="btn btn-danger btn-sm">Delete</a>
-                </td>
-            </th:block>
+            <th scope="row" th:text="${iter.index}"></th>
+            <th scope="row" th:text="${item.uid}"></th>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.surname}"></td>
+            <td th:text="${item.email}"></td>
+            <td th:text="${item.date}"></td>
+            <td th:text="${item.deleteStatus}"></td>
+            <td>
+                <a th:href="${'/userUndoDelete/'+item.uid}" role="button"
+                   class="btn btn-danger btn-sm">Delete</a>
+            </td>
         </tr>
 
         </tbody>

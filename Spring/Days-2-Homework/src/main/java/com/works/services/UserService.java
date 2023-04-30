@@ -14,7 +14,7 @@ public class UserService {
         List<User> ls = new ArrayList<>();
         DB db = new DB();
         try {
-            String sql = "select * from users";
+            String sql = "select * from users where deleteStatu=0";
             PreparedStatement pre = db.connect().prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
