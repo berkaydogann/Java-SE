@@ -9,11 +9,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" th:classappend="" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" th:classappend="${#request.getServletPath() == '/' ? 'active':''}" aria-current="page" href="/">Home</a>
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/settings">Settings</a>
+                    <a class="nav-link" th:classappend="${#request.getServletPath() == '/settings' ? 'active':''}" href="/settings">Settings</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

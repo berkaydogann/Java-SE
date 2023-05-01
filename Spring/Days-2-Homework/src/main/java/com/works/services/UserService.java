@@ -14,7 +14,7 @@ public class UserService {
         List<User> ls = new ArrayList<>();
         DB db = new DB();
         try {
-            String sql = "select * from users where deleteStatu=0";
+            String sql = "select * from users where deleteStatu=0 order by uid desc";
             PreparedStatement pre = db.connect().prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
@@ -86,6 +86,26 @@ public class UserService {
             db.close();
         }
         return deleteStatus;
+    }
+
+    public int userSave(User user){
+        int status = 0;
+        DB db = new DB();
+        try {
+            String sql = "insert into users(uid,name,surname,email,password,status,age,date,deleteStatu) values (null,?,?,?,?,1,?,now(),0)";
+            PreparedStatement pre = db.connect().prepareStatement(sql);
+            pre.setString(1,user.getName());
+            pre.setString(2,user.getSurname());
+            pre.setString(3,user.getEmail());
+            pre.setString(4,user.getPassword());
+            pre.setInt(5,user.getAge());
+            status = pre.executeUpdate();
+        } catch (Exception ex) {
+            System.err.println("Users Save Error : " + ex);
+        } finally {
+            db.close();
+        }
+        return status;
     }
 
 }

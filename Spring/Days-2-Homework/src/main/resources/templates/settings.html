@@ -16,7 +16,37 @@
 <body>
 <div class="container">
     <div th:replace="inc/navbar"></div>
-    <h1>Welcome Settings</h1>
+    <h2>Welcome Settings</h2>
+    <div class="row">
+        <div class="container col-sm-6">
+            <form method="post" action="/userSave">
+                <div class="mb-3">
+                    <label for="userName" class="form-label">Name</label>
+                    <input required name="name" type="text" class="form-control" id="userName">
+                </div>
+                <div class="mb-3">
+                    <label for="userSurname" class="form-label">Surname</label>
+                    <input required name="surname" type="text" class="form-control" id="userSurname" >
+                </div>
+                <div class="mb-3">
+                    <label for="userEmail" class="form-label">Email</label>
+                    <input required name="email"    ype="email" class="form-control" id="userEmail" >
+                </div>
+                <div class="mb-3">
+                    <label for="userPassword" class="form-label">Password</label>
+                    <input required type="password" class="form-control" id="userPassword" name="password">
+                </div>
+                <div class="mb-3">
+                    <label for="userAge" class="form-label">Age</label>
+                    <input required type="number" max="120" min="18" class="form-control" id="userAge" name="age">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col"></div>
+
+    </div>
 </div>
 
 </body>
