@@ -10,12 +10,14 @@ import java.util.List;
 
 public class UserService {
 
-    public List<User> users() {
+    public List<User> users(int p) {
         List<User> ls = new ArrayList<>();
         DB db = new DB();
         try {
-            String sql = "select * from users where deleteStatu=0 order by uid desc";
+            p = (p - 1)*50;
+            String sql = "select * from users where deleteStatu=0 order by uid desc limit ?,50";
             PreparedStatement pre = db.connect().prepareStatement(sql);
+            pre.setInt(1, p);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 User u = new User();
@@ -33,6 +35,24 @@ public class UserService {
             db.close();
         }
         return ls;
+    }
+
+    public int totalCount() {
+        int count = 0;
+        DB db = new DB();
+        try {
+            String sql = "select count(uid) as count from users where deleteStatu = 0";
+            PreparedStatement pre = db.connect().prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("count");
+            }
+        } catch (Exception ex) {
+            System.err.println("Getting Count Error: " + ex);
+        } finally {
+            db.close();
+        }
+        return count;
     }
 
     public int deleteUndoUserById(int uid) {
@@ -88,17 +108,17 @@ public class UserService {
         return deleteStatus;
     }
 
-    public int userSave(User user){
+    public int userSave(User user) {
         int status = 0;
         DB db = new DB();
         try {
             String sql = "insert into users(uid,name,surname,email,password,status,age,date,deleteStatu) values (null,?,?,?,?,1,?,now(),0)";
             PreparedStatement pre = db.connect().prepareStatement(sql);
-            pre.setString(1,user.getName());
-            pre.setString(2,user.getSurname());
-            pre.setString(3,user.getEmail());
-            pre.setString(4,user.getPassword());
-            pre.setInt(5,user.getAge());
+            pre.setString(1, user.getName());
+            pre.setString(2, user.getSurname());
+            pre.setString(3, user.getEmail());
+            pre.setString(4, user.getPassword());
+            pre.setInt(5, user.getAge());
             status = pre.executeUpdate();
         } catch (Exception ex) {
             System.err.println("Users Save Error : " + ex);
