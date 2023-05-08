@@ -2,6 +2,8 @@ package com.works.services;
 
 import com.works.prop.User;
 import com.works.utils.DB;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +29,7 @@ public class UserService {
                 u.setEmail(rs.getString("email"));
                 u.setDate(rs.getString("date"));
                 u.setDeleteStatus(rs.getInt("deleteStatu"));
+                u.setAge(rs.getInt("age"));
                 ls.add(u);
             }
         } catch (Exception ex) {
@@ -151,5 +154,27 @@ public class UserService {
             db.close();
         }
         return u;
+    }
+
+    @PostMapping("userUpdate/{uid}")
+    public int userUpdate(User user) {
+        int status = 0;
+        DB db = new DB();
+        try {
+            String sql = "update users set name = ?, surname = ?, email = ?, date = ?, age = ? where uid = ?";
+            PreparedStatement pre = db.connect().prepareStatement(sql);
+            pre.setString(1, user.getName());
+            pre.setString(2, user.getSurname());
+            pre.setString(3, user.getEmail());
+            pre.setString(4, user.getDate());
+            pre.setInt(5, user.getAge());
+            pre.setInt(6, user.getUid());
+            status = pre.executeUpdate();
+        } catch (Exception ex) {
+            System.err.println("Update error: + " + ex);
+        } finally {
+            db.close();
+        }
+        return status;
     }
 }
