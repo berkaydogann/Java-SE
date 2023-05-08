@@ -70,6 +70,8 @@
             <th scope="col">email</th>
             <th scope="col">date</th>
             <th scope="col">deleteStatus</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Info</th>
         </tr>
         </thead>
         <tbody th:if="${users != null}">
@@ -85,6 +87,10 @@
             <td>
                 <a th:href="${'/userUndoDelete/'+item.uid}" role="button"
                    class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            <td>
+                <a th:href="${'/userInfo/'+item.uid}" role="button"
+                   class="btn btn-success btn-sm">Info</a>
             </td>
         </tr>
 

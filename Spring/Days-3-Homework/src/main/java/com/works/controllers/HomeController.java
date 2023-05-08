@@ -1,5 +1,6 @@
 package com.works.controllers;
 
+import com.works.prop.User;
 import com.works.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,7 @@ public class HomeController {
         model.addAttribute("count", count);
         int page = count % 50 == 0 ? count / 50 : (count / 50) + 1;
         model.addAttribute("page", page);
-        model.addAttribute("p",p);
+        model.addAttribute("p", p);
         status = -1;
         message = "";
         duid = 0;
@@ -72,6 +73,13 @@ public class HomeController {
             message = "Deleted data could not be restored. - " + uid;
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/userInfo/{uid}")
+    public String userInfo(@PathVariable int uid, Model model) {
+        User u = service.singleUserInfo(uid);
+        model.addAttribute("user", u);
+        return "userInfo";
     }
 
 }

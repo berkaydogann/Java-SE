@@ -14,7 +14,7 @@ public class UserService {
         List<User> ls = new ArrayList<>();
         DB db = new DB();
         try {
-            p = (p - 1)*50;
+            p = (p - 1) * 50;
             String sql = "select * from users where deleteStatu=0 order by uid desc limit ?,50";
             PreparedStatement pre = db.connect().prepareStatement(sql);
             pre.setInt(1, p);
@@ -128,4 +128,28 @@ public class UserService {
         return status;
     }
 
+
+    public User singleUserInfo(int uid) {
+        DB db = new DB();
+        User u = new User();
+        try {
+            String sql = "Select * from users where uid = ?";
+            PreparedStatement pre = db.connect().prepareStatement(sql);
+            pre.setInt(1, uid);
+            ResultSet rs = pre.executeQuery();
+            if (rs.next()) {
+                u.setUid(rs.getInt("uid"));
+                u.setName(rs.getString("name"));
+                u.setSurname(rs.getString("surname"));
+                u.setEmail(rs.getString("email"));
+                u.setDate(rs.getString("date"));
+                u.setDeleteStatus(rs.getInt("deleteStatu"));
+            }
+        } catch (Exception ex) {
+            System.err.println("Users Info Error: " + ex);
+        } finally {
+            db.close();
+        }
+        return u;
+    }
 }
