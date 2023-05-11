@@ -156,7 +156,7 @@ public class UserService {
         return u;
     }
 
-    @PostMapping("userUpdate/{uid}")
+
     public int userUpdate(User user) {
         int status = 0;
         DB db = new DB();
