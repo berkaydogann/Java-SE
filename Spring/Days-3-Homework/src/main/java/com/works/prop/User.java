@@ -12,4 +12,5 @@ public class User {
     private Integer age;
     private String date;
     private int deleteStatus;
+    private String remember;
 }
