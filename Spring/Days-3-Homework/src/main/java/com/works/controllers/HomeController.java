@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
-    final HttpServletRequest request;
     UserService service = new UserService();
     int status = -1;
     int duid = 0;

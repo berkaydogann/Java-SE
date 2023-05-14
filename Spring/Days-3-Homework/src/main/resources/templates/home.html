@@ -61,8 +61,8 @@
     </th:block>
 
     <div th:text="${'Total Count: ' + count}"></div>
-
-    <table class="table table-hover">
+    <div class="table-responsive">
+         <table class="table table-hover">
         <thead>
         <tr>
             <th scope="col">No</th>
@@ -142,13 +142,14 @@
 
         </tbody>
     </table>
+    </div>
     <nav>
         <ul class="pagination pagination-sm">
             <th:block th:each="i : ${#numbers.sequence(1,page)}">
 
                 <li class="page-item" th:classappend="${i == p ? 'active':''}"><a
                         class="page-link"
-                        th:href="${'/?p='+ i}"
+                        th:href="${'/home/?p='+ i}"
                         th:text="${i}">1</a>
                 </li>
             </th:block>
