@@ -14,6 +14,7 @@ public class Customer {
 
     @Column(length = 75)
     private String name;
+    private String surname;
 
     @Column(unique = true, length = 150)
     private String email;
