@@ -20,5 +20,18 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public boolean deleteProduct(String stPid) {
+        try {
+            long pid = Long.parseLong(stPid);
+            boolean status = productRepository.existsById(pid);
+            if (status) {
+                productRepository.deleteById(pid);
+                return true;
+            }
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+        return false;
+    }
 
 }

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -24,6 +25,13 @@ public class ProductController {
     @PostMapping("/saveProduct")
     public String saveProduct(Product product) {
         productService.save(product);
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/deleteProduct/{stPid}")
+    public String deleteProduct(@PathVariable String stPid) {
+        boolean status = productService.deleteProduct(stPid);
+        System.out.println("Status: " + status);
         return "redirect:/dashboard";
     }
 
