@@ -15,18 +15,18 @@ public class RegisterController {
     String error = "";
     String success = "";
 
-    @GetMapping("/")
+    @GetMapping("/register")
     private String register(Model model) {
         model.addAttribute("error", error);
         model.addAttribute("success", success);
         error = "";
         success = "";
-        Customer c = customerService.login("bnds@sdgs", "12541");
+        Customer c = customerService.login("", "");
         System.out.println(c);
         return "register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registerCustomer")
     public String customerRegister(Customer customer) {
         Customer c = customerService.save(customer);
         if (c != null && c.getCid() == null) {

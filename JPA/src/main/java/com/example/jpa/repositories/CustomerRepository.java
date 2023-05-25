@@ -10,5 +10,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     //select * from customer where email = ? and password = ?
     Optional<Customer> findByEmailEqualsIgnoreCaseAndPasswordEquals(String email, String password);
 
+    Optional<Customer> findByEmailEqualsIgnoreCase(String email);
+
 
 }

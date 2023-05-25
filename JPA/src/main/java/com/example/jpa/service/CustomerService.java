@@ -14,10 +14,15 @@ public class CustomerService {
     final CustomerRepository customerRepository;
 
     public Customer login(String email, String password) {
-        Optional<Customer> optionalCustomer = customerRepository.findByEmailEqualsIgnoreCaseAndPasswordEquals(email, password);
-        if (optionalCustomer.isPresent()) {
-            return optionalCustomer.get();
+        try {
+            Optional<Customer> optionalCustomer = customerRepository.findByEmailEqualsIgnoreCaseAndPasswordEquals(email, password);
+            if (optionalCustomer.isPresent()) {
+                return optionalCustomer.get();
+            }
+        } catch (Exception ex) {
+            System.err.println("Login error: " + ex);
         }
+
         return null;
     }
 
@@ -29,4 +34,13 @@ public class CustomerService {
             return null;
         }
     }
+
+    public Customer loginCustomer(String email) {
+        Optional<Customer> optionalCustomer = customerRepository.findByEmailEqualsIgnoreCase(email);
+        if (optionalCustomer.isPresent()) {
+            return optionalCustomer.get();
+        }
+        return null;
+    }
+
 }
