@@ -12,5 +12,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     Optional<Customer> findByEmailEqualsIgnoreCase(String email);
 
+    Optional<Customer> findByCidEquals(Long cid);
+
+
+
 
 }

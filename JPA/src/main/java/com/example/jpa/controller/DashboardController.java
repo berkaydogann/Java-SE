@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class ProductController {
+public class DashboardController {
 
     final ProductService productService;
 
     @GetMapping("/dashboard")
     public String dashboard(Model model, Product product) {
         model.addAttribute("products", productService.allProduct(product));
-
         return "dashboard";
     }
 
